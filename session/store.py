@@ -4,5 +4,7 @@ import secrets
 
 class SessionStore:
 
-    def init(self):
-        pass
+    def init(self,session):
+        self.session = session
+        self.data = {}
+        
