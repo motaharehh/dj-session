@@ -17,4 +17,6 @@ class SessionStore:
         self.data[key] = value
 
 
-    
+    def save(self):
+        self.session.session_data = json.dumps(self.data)
+        self.session.save()
