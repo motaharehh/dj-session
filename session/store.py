@@ -6,7 +6,10 @@ class SessionStore:
 
     def init(self,session):
         self.session = session
-        self.data = {}
+        if session.session_data:
+            self.data = json.loads(session.session_data)
+        else:
+            self.data = {}
 
 
     def __getitem__(self, key):
