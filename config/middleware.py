@@ -13,3 +13,9 @@ def get_user(request):
 class AuthenticationMiddleware(MiddlewareMixin):
     def process_request(self, request):
         request.user = SimpleLazyObject(lambda: get_user(request))
+
+
+class MySessionMiddleware(MiddlewareMixin):
+
+    def process_request(self, request):
+        pass
