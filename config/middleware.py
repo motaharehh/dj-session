@@ -2,7 +2,7 @@ from urllib.parse import urlsplit
 from django.contrib import auth
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.functional import SimpleLazyObject
-
+from session.models import Session
 
 def get_user(request):
     if not hasattr(request, "_cached_user"):
@@ -14,8 +14,11 @@ class MySessionMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         session_key = request.COOKIES.get("sessionid")
+        if session_key is None:
+            session = Session.create()
+        return session
         
-        
+
 class AuthenticationMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
