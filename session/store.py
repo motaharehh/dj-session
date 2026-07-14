@@ -4,7 +4,8 @@ import secrets
 
 class SessionStore:
 
-    def init(self,session):
+    def __init__(self, session):
+        
         self.session = session
         if session.session_data:
             self.data = json.loads(session.session_data)

@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 def register(request):
-    if User.objects.filter(username='sepehr').exists():
+    if User.objects.filter(username='user').exists():    
         return HttpResponse("User already exists")
 
     user = User(
@@ -23,7 +23,7 @@ def login_view(request):
     if request.method == "GET":
         username = request.GET.get("username")
         password = request.GET.get("password")
-
+         
         user = authenticate(
             request,
             username=username,
