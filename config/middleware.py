@@ -10,14 +10,16 @@ def get_user(request):
     return request._cached_user
 
 
-class AuthenticationMiddleware(MiddlewareMixin):
-    
-    def process_request(self, request):
-        request.user = SimpleLazyObject(lambda: get_user(request))
-
-
 class MySessionMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         session_key = request.COOKIES.get("sessionid")
+        
+        
+class AuthenticationMiddleware(MiddlewareMixin):
+
+    def process_request(self, request):
+        request.user = SimpleLazyObject(lambda: get_user(request))
+
+
 
