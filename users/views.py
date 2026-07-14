@@ -29,6 +29,7 @@ def login_view(request):
             username=username,
             password=password
         )
+        print(user)
 
         if user is not None:
             login(request, user)

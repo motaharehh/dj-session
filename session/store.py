@@ -24,3 +24,6 @@ class SessionStore:
     def save(self):
         self.session.session_data = json.dumps(self.data)
         self.session.save()
+
+    def __contains__(self, key):
+        return key in self.data
