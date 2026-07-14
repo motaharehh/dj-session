@@ -25,6 +25,15 @@ class MySessionMiddleware(MiddlewareMixin):
         if session is None:
             session = Session.create()
         request.session = SessionStore(session)
+    
+    def process_response(self, request, response):
+        if hasattr(request, "session"):
+            request.session.save()
+        response.set_cookie(
+            "sessionid",
+            request.session.session.session_key,
+        )
+        return response
 
 
 class AuthenticationMiddleware(MiddlewareMixin):
