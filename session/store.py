@@ -27,3 +27,6 @@ class SessionStore:
 
     def __contains__(self, key):
         return key in self.data
+    
+    def cycle_key(self):
+        pass
