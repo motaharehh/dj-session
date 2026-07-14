@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.functional import SimpleLazyObject
 from session.models import Session
+from session.store import SessionStore
 
 def get_user(request):
     if not hasattr(request, "_cached_user"):
@@ -23,8 +24,8 @@ class MySessionMiddleware(MiddlewareMixin):
 
         if session is None:
             session = Session.create()
-        return session
-        
+        request.session = SessionStore(session)
+
 
 class AuthenticationMiddleware(MiddlewareMixin):
 
