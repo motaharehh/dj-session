@@ -30,3 +30,6 @@ class SessionStore:
     
     def cycle_key(self):
         pass
+
+    def get(self, key, default=None):
+        return self.data.get(key, default)
