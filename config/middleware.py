@@ -16,6 +16,13 @@ class MySessionMiddleware(MiddlewareMixin):
         session_key = request.COOKIES.get("sessionid")
         if session_key is None:
             session = Session.create()
+        else:
+            session = Session.objects.filter(
+                session_key=session_key
+            ).first()
+
+        if session is None:
+            session = Session.create()
         return session
         
 
